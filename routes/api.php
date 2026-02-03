@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\ProductCategoryController;
 use App\Http\Controllers\Api\V1\ProductCategoryImageController;
+use App\Http\Controllers\Api\V1\ProductController;
+use App\Http\Controllers\Api\V1\ProductImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,5 +20,9 @@ Route::prefix('v1')->group(function () {
 
         // Route dinamis untuk all function dicontroller apabila menggunakan --api
         Route::apiResource('product-categories', ProductCategoryController::class);
+
+        Route::get('products/options', [ProductController::class, 'options']);
+        Route::post('products/{id}/image', [ProductImageController::class, 'store']);
+        Route::apiResource('products', ProductController::class);
     });
 });
